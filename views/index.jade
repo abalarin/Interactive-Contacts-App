@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  h1 Contact
+  form(method='Post' action='mailer')
+    label Name: 
+    br
+    input(name='First' placeholder='First' required)
+    input(name='Last' placeholder='Last' required)
+    br
+
+    br
+    label Address: 
+    br
+    input(name='Street' placeholder='Street' required)
+    input(name='City' placeholder='City' required)
+    br
+    input(name='State' placeholder='State' required)
+    input(name='Zip' placeholder='Zip' required)
+    br
+    
+    br
+    label Contact:
+    br
+    input(name='Phone' placeholder='Phone')
+    input(name='Email' placeholder='Email')
+    br
+    
+    div(id='ContactMethod')
+      br
+      label Contact Method: 
+      br  
+      label Mail
+      input(id='chk1' name='ContactMail' type='checkbox' value='true')
+      br
+      label Phone
+      input(id='chk2' name='ContactPhone' type='checkbox' value='true')
+      br
+      label Email
+      input(id='chk3' name='ContactEmai' type='checkbox' value='true')
+    
+    br
+    input(onclick='isChecked()' type='submit')
+    
+  form(method='Get' action='contacts')
+    input(type='submit' value='Contacts')
