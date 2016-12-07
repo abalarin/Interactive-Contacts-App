@@ -10,3 +10,7 @@ a {
 .ContactsList {
   list-style: none;
 }
+.radiobuttons label{
+  padding-right: 1em;
+  padding-left: 2px;
+}

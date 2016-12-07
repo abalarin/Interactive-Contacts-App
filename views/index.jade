@@ -5,6 +5,15 @@ block content
   form(method='Post' action='mailer')
     label Name: 
     br
+    div(class='radiobuttons') 
+      input(type='radio' name='Preferance' value='Mr.' required)
+      label Mr.
+      input(type='radio' name='Preferance' value='Mrs.' required)
+      label Mrs. 
+      input(type='radio' name='Preferance' value='Ms.' required)
+      label Ms. 
+      input(type='radio' name='Preferance' value='Dr.' required)
+      label Dr.
     input(name='First' placeholder='First' required)
     input(name='Last' placeholder='Last' required)
     br
@@ -30,14 +39,14 @@ block content
       br
       label Contact Method: 
       br  
-      label Mail
       input(id='chk1' name='ContactMail' type='checkbox' value='true')
+      label  Mail
       br
-      label Phone
       input(id='chk2' name='ContactPhone' type='checkbox' value='true')
+      label  Phone
       br
-      label Email
       input(id='chk3' name='ContactEmai' type='checkbox' value='true')
+      label  Email
     
     br
     input(onclick='isChecked()' type='submit')

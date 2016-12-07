@@ -2,10 +2,12 @@ extends layout
 
 block content
   h1 Contacts Page
-  ul(class='ContactsList')
-    -for item in data
-      li #{item.First}, #{item.Last}
-      li #{item.Street}, #{item.City}
-      li #{item.State}, #{item.Zip}
-      li #{item.Phone}, #{item.Email}
-      br
+  div
+    ul(class='ContactsList')
+      -for item in data
+        -if(item.First != '' && item.Last != '')
+          li #{item.Preferance} #{item.First}, #{item.Last}
+          li #{item.Street}, #{item.City}
+          li #{item.State}, #{item.Zip}
+          li #{item.Phone}, #{item.Email}
+          br
