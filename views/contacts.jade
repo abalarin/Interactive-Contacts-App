@@ -1,13 +1,26 @@
 extends layout
 
+title Contacts Page
+
 block content
-  h1 Contacts Page
-  div
+  link(rel='stylesheet', href='/stylesheets/contactsStyle.css')
+  script(type="text/javascript" src='/javascripts/mapScript.js').
+  
+  div(class='content' id='list')
     ul(class='ContactsList')
       -for item in data
-        -if(item.First != '' && item.Last != '')
-          li #{item.Preferance} #{item.First}, #{item.Last}
-          li #{item.Street}, #{item.City}
-          li #{item.State}, #{item.Zip}
-          li #{item.Phone}, #{item.Email}
+        -if(item.First != '' && item.Last != '' && item.Coordinates != undefined)
+          div(id='contactBubble' onclick='centerMap(' + item.Coordinates[0].lat + ',' + item.Coordinates[1].lon +')')
+            li #{item.Preferance} #{item.First} #{item.Last}
+            li #{item.Street}, #{item.City}
+            li #{item.State}, #{item.Zip}
+            li #{item.Phone}, #{item.Email}
           br
+  
+  div(class='content' id='map')  
+    script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFJTfyGLWIUm3gZOGBc_j7kZf6FncAAYY&callback=initMap").
+    
+    //- div(id='contactBubble' onclick='centerMap(' + item.Coordinates[0].lat +')')
+    //- -$('<div>')
+    //-   -.attr(id='contactBubble' onclick='centerMap('+ {item.Coordinates[0].lat, item.Coordinates[0].lon} + ')')
+    //-   -.appendTo('.ContactsList');

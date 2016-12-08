@@ -1,12 +1,20 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
+.navbar {
+  box-shadow: 0px 5px 5px #999;
+}
 a {
   color: #00B7FF;
 }
-
+.content {
+  margin-top: 50px;
+  text-align: center;
+}
+.content .wrapper {
+    display: inline-block;
+    text-align: left;
+}
 .ContactsList {
   list-style: none;
 }

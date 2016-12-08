@@ -1,55 +1,57 @@
 extends layout
 
 block content
-  h1 Contact
-  form(method='Post' action='mailer')
-    label Name: 
-    br
-    div(class='radiobuttons') 
-      input(type='radio' name='Preferance' value='Mr.' required)
-      label Mr.
-      input(type='radio' name='Preferance' value='Mrs.' required)
-      label Mrs. 
-      input(type='radio' name='Preferance' value='Ms.' required)
-      label Ms. 
-      input(type='radio' name='Preferance' value='Dr.' required)
-      label Dr.
-    input(name='First' placeholder='First' required)
-    input(name='Last' placeholder='Last' required)
-    br
+  div(class='content')
+    div(class='wrapper')
+      h1 Contact
+      form(method='Post' action='mailer')
+        label Name: 
+        br
+        div(class='radiobuttons') 
+          input(type='radio' name='Preferance' value='Mr.' required)
+          label Mr.
+          input(type='radio' name='Preferance' value='Mrs.' required)
+          label Mrs. 
+          input(type='radio' name='Preferance' value='Ms.' required)
+          label Ms. 
+          input(type='radio' name='Preferance' value='Dr.' required)
+          label Dr.
+        input(name='First' placeholder='First' required)
+        input(name='Last' placeholder='Last' required)
+        br
 
-    br
-    label Address: 
-    br
-    input(name='Street' placeholder='Street' required)
-    input(name='City' placeholder='City' required)
-    br
-    input(name='State' placeholder='State' required)
-    input(name='Zip' placeholder='Zip' required)
-    br
-    
-    br
-    label Contact:
-    br
-    input(name='Phone' placeholder='Phone')
-    input(name='Email' placeholder='Email')
-    br
-    
-    div(id='ContactMethod')
-      br
-      label Contact Method: 
-      br  
-      input(id='chk1' name='ContactMail' type='checkbox' value='true')
-      label  Mail
-      br
-      input(id='chk2' name='ContactPhone' type='checkbox' value='true')
-      label  Phone
-      br
-      input(id='chk3' name='ContactEmai' type='checkbox' value='true')
-      label  Email
-    
-    br
-    input(onclick='isChecked()' type='submit')
-    
-  form(method='Get' action='contacts')
-    input(type='submit' value='Contacts')
+        br
+        label Address: 
+        br
+        input(name='Street' placeholder='Street' required)
+        input(name='City' placeholder='City' required)
+        br
+        input(name='State' placeholder='State' required)
+        input(name='Zip' placeholder='Zip' required)
+        br
+        
+        br
+        label Contact:
+        br
+        input(name='Phone' placeholder='Phone')
+        input(name='Email' placeholder='Email')
+        br
+        
+        div(id='ContactMethod')
+          br
+          label Contact Method: 
+          br  
+          input(id='chk1' name='ContactMail' type='checkbox' value='true')
+          label  Mail
+          br
+          input(id='chk2' name='ContactPhone' type='checkbox' value='true')
+          label  Phone
+          br
+          input(id='chk3' name='ContactEmai' type='checkbox' value='true')
+          label  Email
+        
+        br
+        input(onclick='isChecked()' type='submit')
+        
+      form(method='Get' action='contacts')
+        input(type='submit' value='Contacts')
