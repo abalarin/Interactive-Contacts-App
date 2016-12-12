@@ -52,7 +52,14 @@ router.post('/', function(req, res, next) {
            else {
              // Success
              console.log(doc);
-             res.render('success', doc)
+             if(data.modalForm){
+               collection.find({},{},function(e,docs){
+                 res.render('contacts', {data: docs});
+               });
+             }
+             else{
+               res.render('success', doc)
+             }
            }
         }
       );
@@ -60,10 +67,6 @@ router.post('/', function(req, res, next) {
     .catch(function(err) {
       res.end(err + "There was a problem geocoding data.");
     });
-
-
-
-  //res.render('success', data)
 });
 
 module.exports = router;

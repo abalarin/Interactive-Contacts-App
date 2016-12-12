@@ -1,5 +1,5 @@
 #list{
-  margin-top: 55px;
+  margin-top: 50px;
   position: fixed;
   height: 90%;
   overflow: hidden;
@@ -7,6 +7,7 @@
   z-index: 2;
 }
 #modalBttn{
+  margin-top: 5px;
   width: 100%;
   margin-bottom: 10px;
 }
@@ -32,4 +33,10 @@
 }
 .contactMethod input{
   margin-right: 2px;
+}
+.formWrapper{
+  text-align: center;
+}
+.modalBttn{
+  margin-right: 15px;
 }

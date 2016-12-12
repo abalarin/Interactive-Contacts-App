@@ -12,8 +12,8 @@ a {
   text-align: center;
 }
 .content .wrapper {
-    display: inline-block;
-    text-align: left;
+  display: inline-block;
+  text-align: left;
 }
 .ContactsList {
   list-style: none;
