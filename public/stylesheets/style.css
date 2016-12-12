@@ -22,3 +22,10 @@ a {
   padding-right: 1em;
   padding-left: 2px;
 }
+#successTitle{
+  text-align: center;
+  padding-top: 70px;
+}
+#subTitle{
+  text-align: center;
+}

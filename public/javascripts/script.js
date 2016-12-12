@@ -1,9 +1,4 @@
 //$(function (){
-  // $.('button').click(function(){
-  //   $.post('/', data, function(data, status){
-  //     console.log("Data: " + data + "\nStatus: " + status);
-  //   })
-  // });
 //});
 
 function isChecked(){

@@ -4,7 +4,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
   var db = req.db;
-  var collection = db.get('UserCollection');
+  var collection = db.get('UserCollection1');
 
   collection.find({},{},function(e,docs){
         //console.log('mong: ', docs);
@@ -12,4 +12,13 @@ router.get('/', function(req, res, next) {
     });
 });
 
+router.post('/', function(req, res, next) {
+  var db = req.db;
+  var collection = db.get('UserCollection1');
+
+  collection.find({},{},function(e,docs){
+        //console.log('mong: ', docs);
+        res.send({data: docs});
+    });
+});
 module.exports = router;

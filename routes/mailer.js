@@ -4,23 +4,22 @@ var router = express.Router();
 var NodeGeocoder = require('node-geocoder');
 var options = {
   provider: 'google',
-
-  // Optional depending on the providers
-  httpAdapter: 'https', // Default
-  apiKey: 'AIzaSyBuM7ZEgpovl0ZuGJHGm4iA-CsFCmwnBm8', // for Mapquest, OpenCage, Google Premier
-  formatter: null         // 'gpx', 'string', ...
+  httpAdapter: 'https',
+  apiKey: 'AIzaSyBuM7ZEgpovl0ZuGJHGm4iA-CsFCmwnBm8',
 };
 var geocoder = NodeGeocoder(options);
 
 
 router.post('/', function(req, res, next) {
   var db = req.db;
-  var collection = db.get('UserCollection');
+  var collection = db.get('UserCollection1');
   data = req.res.req.body;
+  var address = data.Street + ', ' + data.City + ' ' + data.State + ', ' + data.Zip;
 
-  geocoder.geocode({address: data.Street, zipcode: data.Zip})
+  geocoder.geocode(address)
     .then(function(geo) {
-      //console.log(geo[0]);
+      formated = geo[0];
+      console.log(geo);
 
       //Insert into collection
       collection.insert(
@@ -29,12 +28,12 @@ router.post('/', function(req, res, next) {
           'First': data.First,
           'Last': data.Last,
           'Coordinates':
-            [{'lat': geo[0].latitude},
-            {'lon': geo[0].longitude}],
-          'Street': data.Street,
-          'City': data.City,
-          'State': data.State,
-          'Zip': data.Zip,
+            [{'lat': formated.latitude},
+            {'lon': formated.longitude}],
+          'Street': formated.streetNumber + ' ' + formated.streetName,
+          'City': formated.city,
+          'State': formated.administrativeLevels.level1long,
+          'Zip': formated.zipcode,
           'Phone': data.Phone,
           'Email': data.Email,
           'Preferance': data.Preferance,
@@ -59,7 +58,7 @@ router.post('/', function(req, res, next) {
       );
     })
     .catch(function(err) {
-    res.end(err + "There was a problem geocoding data.");
+      res.end(err + "There was a problem geocoding data.");
     });
 
 

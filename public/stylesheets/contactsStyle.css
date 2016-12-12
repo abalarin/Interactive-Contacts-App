@@ -1,26 +1,35 @@
-.content {
-  margin-top: 50px;
+#list{
+  margin-top: 55px;
+  position: fixed;
+  height: 90%;
+  overflow: hidden;
+  overflow: scroll;
+  z-index: 2;
 }
-  #list{
-    position: fixed;
-    height: 90%;
-    overflow: hidden;
-    overflow: scroll;
-    z-index: 2;
-  }
-  #contactBubble{
-    text-align: left;
-    opacity: .8;
-    padding-left: 5px;
-    background-color: white;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-  #map {
-    position: absolute;
-    padding-left: 0;
-    margin-left: 0;
-    height: 90%;
-    width: 100%;
-    z-index: 1;
-  }
+#modalBttn{
+  width: 100%;
+  margin-bottom: 10px;
+}
+#contactBubble{
+  text-align: left;
+  opacity: .8;
+  padding-left: 5px;
+  background-color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+#map {
+  position: absolute;
+  padding-left: 0;
+  margin-left: 0;
+  height: 90%;
+  width: 100%;
+  z-index: 1;
+}
+.contactMethod h5{
+  display: inline-block;
+  margin-right: 10px;
+}
+.contactMethod input{
+  margin-right: 2px;
+}

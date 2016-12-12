@@ -7,9 +7,21 @@ function initMap(location) {
     center: location,
     zoom: 10
   });
-  var marker = new google.maps.Marker({
-    position: location,
-    map: map
+
+  $.post('/contacts', function(results){
+    console.log(results);
+    size= results.data.length;
+    for (var i = 0; i < size; i++){
+      lat = results.data[i].Coordinates[0].lat;
+      lng = results.data[i].Coordinates[1].lon;
+      var latLng = new google.maps.LatLng(lat, lng);
+      var marker = new google.maps.Marker({
+        position: latLng,
+        zoom: 10,
+        animation: google.maps.Animation.DROP,
+        map: map
+      });
+    }
   });
 }
 function centerMap(lat, lon) {
@@ -18,11 +30,4 @@ function centerMap(lat, lon) {
       'lng': lon
     }
     map.setCenter(location);
-}
-
-function addPoint(location) {
-  var marker = new google.maps.Marker({
-    position: location,
-    map: map
-  });
 }

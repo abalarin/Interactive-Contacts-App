@@ -6,4 +6,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/modal', function(req, res, next) {
+  res.render('modal-test');
+});
+
 module.exports = router;
