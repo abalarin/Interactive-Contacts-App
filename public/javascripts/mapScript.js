@@ -17,9 +17,9 @@ $('document').ready(function(){
 
     });
     //Show Edit/Delete Button and remove Edit Button
-    $(this).next().show();  //Save
+    $(this).next().show();        //Save
     $(this).next().next().show(); //Delete
-    $(this).hide(); //Edit
+    $(this).hide();               //Edit
 
     // On click Save commit changes to server and turn of content-editable
     $('.save').click(function(){
@@ -42,9 +42,10 @@ $('document').ready(function(){
         $(this).closest('li').next().find('select').replaceWith('<p id="pref">'+val+' </p>');
       }
 
-      $(this).hide();
-      $(this).next().hide();
-      $(this).prev().show();
+      //Hide Save/Delete Buttons and show Edit button
+      $(this).hide();       //Save
+      $(this).next().hide();//Delete
+      $(this).prev().show();//Edit
     });
   });
 
