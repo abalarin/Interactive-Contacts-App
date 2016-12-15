@@ -11,13 +11,23 @@
   width: 100%;
   margin-bottom: 10px;
 }
-#contactBubble{
+.ContactsList li a{
+  padding-right: 5px;
+}
+.contactBubble{
   text-align: left;
   opacity: .8;
   padding-left: 5px;
   background-color: white;
   border-radius: 10px;
   cursor: pointer;
+}
+.contactBubble li p{
+  display: inline;
+}
+.contactBubble li a{
+  float: right;
+  margin-right: 5px;
 }
 #map {
   position: absolute;
@@ -39,4 +49,15 @@
 }
 .modalBttn{
   margin-right: 15px;
+}
+
+.style-4 input[type="text"] {
+  padding: 10px;
+  border: none;
+  border-bottom: solid 2px #c9c9c9;
+  transition: border 0.3s;
+}
+.style-4 input[type="text"]:focus,
+.style-4 input[type="text"].focus {
+  border-bottom: solid 2px #969696;
 }

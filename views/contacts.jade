@@ -11,11 +11,28 @@ block content
       button.btn.btn-primary.btn-lg(id='modalBttn', type='button', data-toggle='modal', data-target='#myModal') Add Contact
       -for item in data
         -if(item.First != '' && item.Last != '' && item.Coordinates != undefined)
-          div(id='contactBubble' onclick='centerMap(' + item.Coordinates[0].lat + ',' + item.Coordinates[1].lon +')')
-            li #{item.Preferance} #{item.First} #{item.Last}
-            li #{item.Street}, #{item.City}
-            li #{item.State}, #{item.Zip}
-            li #{item.Phone}, #{item.Email}
+          li
+            a.edit Edit
+            a.save(hidden) Save
+            a.delete(hidden) Delete
+          div(class='contactBubble' id='#{item._id}' onclick='centerMap(' + item.Coordinates[0].lat + ',' + item.Coordinates[1].lon +')')
+            li 
+              p#pref #{item.Preferance} 
+              p #{item.First}
+              span 
+              p #{item.Last}
+            li 
+              p #{item.Street}
+              span , 
+              p #{item.City}
+            li 
+              p #{item.State}
+              span , 
+              p #{item.Zip}
+            li 
+              p #{item.Phone}
+              span , 
+              p #{item.Email}
           br
 
   div(class='modal fade', id="myModal", tabindex="-1", role="dialog")
@@ -52,7 +69,7 @@ block content
               br
               h4 Contact:
               input(name='Phone' placeholder='Phone')
-              input(name='Email' placeholder='Email')
+              input(name='Email' type="email" placeholder='Email')
               br
               
               .contactMethod

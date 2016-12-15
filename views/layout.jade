@@ -24,5 +24,12 @@ html
                 a(href="/") Home
               li
                 a(href="contacts") Contacts
+              li
+                a(id='loginA' type='button', data-toggle='modal', data-target='#loginModal') Login
+                
+      div(class='modal fade', id="loginModal", tabindex="-1", role="dialog")
+        .modal-dialog(role="document")
+          .modal-content
+            .modal-body
 
     block content

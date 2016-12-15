@@ -6,6 +6,7 @@ router.get('/', function(req, res, next) {
   var db = req.db;
   var collection = db.get('UserCollection1');
 
+
   collection.find({},{},function(e,docs){
         //console.log('mong: ', docs);
         res.render('contacts', {data: docs});
