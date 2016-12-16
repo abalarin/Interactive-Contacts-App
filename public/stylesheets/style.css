@@ -29,3 +29,13 @@ a {
 #subTitle{
   text-align: center;
 }
+.login {
+  margin-top: 100px;
+  text-align: center;
+}
+.login label {
+  padding-right: 5px;
+}
+.login p {
+
+}

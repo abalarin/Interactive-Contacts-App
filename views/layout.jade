@@ -20,15 +20,19 @@ html
           .collapse.navbar-collapse
             ul.nav.navbar-nav
               li
-                a(href="/") Home
+                a(href="/") Mailer
               li
                 a(href="contacts") Contacts
               li
-                a(href="#" id='loginA' type='button', data-toggle='modal', data-target='#loginModal') Login
+                //- (data-toggle='modal', data-target='#loginModal' id='loginA')
+                a(href="logout") Logout
                 
       div(class='modal fade', id="loginModal", tabindex="-1", role="dialog")
         .modal-dialog(role="document")
           .modal-content
-            .modal-body
+            .modal-header
+              h3 #{user}
+            .modal-body      
+              button.btn.btn-danger(action='logout') Logout
 
     block content

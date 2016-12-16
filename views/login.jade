@@ -1,0 +1,17 @@
+extends layout
+
+
+block content
+
+  form(action="login" method="post")
+    div.login
+      h1 #{title}
+      label Username:
+      p
+        input(type="text" name="username" placeholder='username')
+      
+      label Password:
+      p 
+        input(type="password" name="password" placeholder='password')
+      
+      button.btn.btn-primary(type="submit") Submit
