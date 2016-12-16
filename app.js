@@ -39,7 +39,8 @@ app.use(function(req,res,next){
 });
 
 app.use('/', index);
-app.use('/users', users);
+//app.use('/save', users);
+app.use('/delete', users);
 app.use('/mailer', mailer);
 app.use('/contacts', contacts);
 app.use('/modal', index);

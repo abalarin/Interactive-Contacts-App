@@ -11,11 +11,15 @@ block content
       button.btn.btn-primary.btn-lg(id='modalBttn', type='button', data-toggle='modal', data-target='#myModal') Add Contact
       -for item in data
         -if(item.First != '' && item.Last != '' && item.Coordinates != undefined)
-          li
-            a.edit Edit
-            a.save(hidden) Save
-            a.delete(hidden) Delete
+          
           div(class='contactBubble' id='#{item._id}' onclick='centerMap(' + item.Coordinates[0].lat + ',' + item.Coordinates[1].lon +')')
+            li
+              a.edit
+                span.glyphicon.glyphicon-pencil
+              a.save(hidden)
+                span.glyphicon.glyphicon-ok
+              a.delete(hidden)
+                span.glyphicon.glyphicon-remove
             li 
               p#pref #{item.Preferance} 
               p #{item.First}
@@ -33,7 +37,6 @@ block content
               p #{item.Phone}
               span , 
               p #{item.Email}
-          br
 
   div(class='modal fade', id="myModal", tabindex="-1", role="dialog")
     .modal-dialog(role="document")
@@ -75,16 +78,16 @@ block content
               .contactMethod
                 br
                 h4 Contact Method: 
-                input(id='chk1' name='ContactMail' type='checkbox' value='true')
+                input(id='chk1' name='ContactMail' type='checkbox' value='Mail')
                 h5 Mail
-                input(id='chk2' name='ContactPhone' type='checkbox' value='true')
+                input(id='chk2' name='ContactPhone' type='checkbox' value='Phone')
                 h5 Phone
-                input(id='chk3' name='ContactEmai' type='checkbox' value='true')
+                input(id='chk3' name='ContactEmai' type='checkbox' value='Email')
                 h5 Email
                 
               input(name='modalForm' value='true' hidden)
               button(type="button" class="modalBttn btn btn-default" data-dismiss="modal") Close
-              input(onclick='isChecked()' type='submit' class='btn btn-primary')
+              input(type='submit' class='btn btn-primary')
   
   div(class='content' id='map')  
     script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFJTfyGLWIUm3gZOGBc_j7kZf6FncAAYY&callback=initMap").

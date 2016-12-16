@@ -9,17 +9,15 @@ var options = {
 };
 var geocoder = NodeGeocoder(options);
 
-
 router.post('/', function(req, res, next) {
   var db = req.db;
-  var collection = db.get('UserCollection1');
+  var collection = db.get('newCollection');
   data = req.res.req.body;
   var address = data.Street + ', ' + data.City + ' ' + data.State + ', ' + data.Zip;
 
   geocoder.geocode(address)
     .then(function(geo) {
       formated = geo[0];
-      console.log(geo);
 
       //Insert into collection
       collection.insert(
@@ -52,6 +50,7 @@ router.post('/', function(req, res, next) {
            else {
              // Success
              console.log(doc);
+             //if submit from modal reload contacts
              if(data.modalForm){
                collection.find({},{},function(e,docs){
                  res.render('contacts', {data: docs});
