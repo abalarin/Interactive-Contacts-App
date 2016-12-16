@@ -50,7 +50,8 @@ router.post('/', function(req, res, next) {
            else {
              // Success
              console.log(doc);
-             //if submit from modal reload contacts
+
+             //if submit from modal reload contacts page
              if(data.modalForm){
                collection.find({},{},function(e,docs){
                  res.render('contacts', {data: docs});

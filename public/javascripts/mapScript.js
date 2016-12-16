@@ -29,7 +29,7 @@ $('document').ready(function(){
 
     $(this).closest('div')
       .toggleClass('editableBubble contactBubble')
-      .attr('onclick');
+      .attr('onclick=""'); //Add center on map function
 
     //Get data from Contact Bubble and send to Server
     var data = $(this).closest('div').children().siblings()
@@ -56,10 +56,11 @@ $('document').ready(function(){
     $(this).prev().show();//Edit
   });
 
+  // On click delete remove contact bubble from database then
+  //  remove from contactBubble from the DOM.
   $('.delete').click(function(){
-    $.post('/delete', { 'id': $(this).closest('div')[0].id }, function(){
-    });
-    $(this).closest('li').next().remove();
+    var objectID = $(this).closest('div')[0].id;
+    $.post('/delete', { 'id': objectID }, function(){});
     $(this).closest('div').remove();
   });
 
@@ -96,6 +97,7 @@ function initMap(location) {
     zoom: 10
   });
 
+  //Get list of contacts from contact route and add googlepins
   $.post('/contacts', function(results){
     size= results.data.length;
     for (var i = 0; i < size; i++){
@@ -111,6 +113,7 @@ function initMap(location) {
     }
   });
 }
+
 function centerMap(lat, lon) {
     var location = {
       'lat': lat,
