@@ -1,3 +1,33 @@
+#modalBttn{
+  margin-top: 5px;
+  width: 95%;
+  margin-bottom: 10px;
+}
+
+/*----Start of Search options--------*/
+.searchButtons {
+  margin-bottom: 10px;
+}
+.searchInputs {
+  margin-bottom: 10px;
+}
+#address{
+  margin-left: 2px;
+}
+#search {
+  padding-right: 10px;
+}
+#searchName {
+  width: 92%;
+}
+#searchAddress{
+  width: 92%;
+}
+.ContactsList li a{
+  padding-left: 10px;
+  cursor: pointer;
+}
+/*-----------------------------------*/
 #list{
   margin-top: 50px;
   position: fixed;
@@ -6,15 +36,7 @@
   overflow: scroll;
   z-index: 2;
 }
-#modalBttn{
-  margin-top: 5px;
-  width: 95%;
-  margin-bottom: 10px;
-}
-.ContactsList li a{
-  padding-left: 10px;
-  cursor: pointer;
-}
+
 .contactBubble{
   text-align: left;
   opacity: .85;

@@ -27,9 +27,11 @@ $('document').ready(function(){
   // On click Save commit changes to server and turn of content-editable
   $('.save').click(function(){
 
+    var lat = $(this).closest('div').find('.geoAddress').attr('value')
+    var lng = $(this).closest('div').find('.geoAddress').attr('id')
     $(this).closest('div')
       .toggleClass('editableBubble contactBubble')
-      .attr('onclick=""'); //Add center on map function
+      .attr('onclick','centerMap(' + lat + ',' + lng + ')');
 
     //Get data from Contact Bubble and send to Server
     var data = $(this).closest('div').children().siblings()
@@ -64,10 +66,80 @@ $('document').ready(function(){
     $(this).closest('div').remove();
   });
 
+  //--Search Radius Logic--
+  $('#search').click(function(){
+    //initlize by hiding all contact bubbles
+    $('.contactBubble').hide();
+
+    //Get values from user input and geocode
+    var address =  document.getElementById('searchAddress').value;
+    var radius = document.getElementById('radius').value;
+    var jax = $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address=?' + address);
+
+    // When Geocode is finished get coords and center map
+    jax.done(function(data){
+      var location_json = data.results[0].geometry.location;
+      centerMap(location_json.lat, location_json.lng);
+
+      //Search each contact bubble for its Coordinates
+      $( ".geoAddress" ).each(function(index){
+        var lat = $(this).attr("value")
+        var lng = $(this).attr("id")
+
+        if(lat && lng){//check for valid coordinates
+
+          // find distance between coordinates
+          var dist = distance(location_json.lat, location_json.lng, lat, lng);
+          if(parseInt(radius) > dist){
+
+            //If within radius show this contact bubble
+            $(this).closest('div').show();
+          }
+        }
+      });
+    });
+  });
+
+  //Search Logic -on each keystrok filter
+  $(document).on('keyup', '#searchName', function(){
+    var input = document.getElementById('searchName').value;
+
+    //--if match hide non matches and show matches
+    $('.searchableName:contains(' + input + ')').closest('div').show();
+    $('.searchableName:not(:contains(' + input + '))').closest('div').hide();
+    //If input field empty show all contactBubbles
+    if(input == '')
+      $('.contactBubbles').show();
+  });
+
+  $('#name').click(function(){
+    $('#address').hide();
+    $('#name').hide();
+    $('#searchName').show();
+    $('.back').show();
+  });
+  $('#address').click(function(){
+    $('#address').hide();
+    $('#name').hide();
+    $('#searchAddress').show();
+    $('#radius').show();
+    $('#search').show();
+    $('.back').show();
+  });
+  $('.back').click(function(){
+    $(this).hide();
+    $('#search').hide();
+    $('#searchName').hide();
+    $('#searchAddress').hide();
+    $('#radius').hide();
+    $('#name').show();
+    $('#address').show();
+    $('.contactBubble').show()
+  });
 
 });
 
-//Make a model snd send via Post to server to store in DB
+//Make a model and send via Post to server to store in DB
 function sendData(data, id, rm){
   console.log(data);
   var model = {
@@ -122,3 +194,19 @@ function centerMap(lat, lon) {
     map.setCenter(location);
 }
 // ---- End Google Maps Stuff ----
+
+
+//-----Calculate Distnace between two geoPoints-----
+function distance(lat1, lon1, lat2, lon2, unit) {
+	var radlat1 = Math.PI * lat1/180
+	var radlat2 = Math.PI * lat2/180
+	var theta = lon1-lon2
+	var radtheta = Math.PI * theta/180
+	var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+	dist = Math.acos(dist)
+	dist = dist * 180/Math.PI
+	dist = dist * 60 * 1.1515
+	if (unit=="K") { dist = dist * 1.609344 }
+	if (unit=="N") { dist = dist * 0.8684 }
+	return dist
+}

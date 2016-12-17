@@ -9,6 +9,23 @@ block content
   div(class='content' id='list')
     ul(class='ContactsList')
       button.btn.btn-primary.btn-lg(id='modalBttn', type='button', data-toggle='modal', data-target='#myModal') Add Contact
+      div.searchButtons
+        button.btn.btn-info#name Search Name
+        button.btn.btn-info#address Search Address
+      div.searchInputs
+        input#searchName(placeholder='Name' hidden) 
+        select#radius(hidden)
+          option(value='10') 10mi
+          option(value='50') 50mi
+          option(value='100') 100mi
+          option(value='500') 500mi         
+        input#searchAddress(placeholder='Address' hidden)
+        
+        a#search(hidden)
+          span.glyphicon.glyphicon-ok
+          
+        a.back(hidden)
+          span.glyphicon.glyphicon-remove
       -for item in data
         -if(item.First != '' && item.Last != '' && item.Coordinates != undefined)
           
@@ -20,16 +37,16 @@ block content
                 span.glyphicon.glyphicon-ok
               a.delete(hidden)
                 span.glyphicon.glyphicon-remove
-            li 
+            li.searchableName 
               p#pref #{item.Preferance} 
               p #{item.First}
               span 
               p #{item.Last}
-            li 
+            li.geoAddress(value='#{item.Coordinates[0].lat}' id='#{item.Coordinates[1].lon}')
               p #{item.Street}
               span , 
               p #{item.City}
-            li 
+            li
               p #{item.State}
               span , 
               p #{item.Zip}
@@ -43,7 +60,7 @@ block content
       .modal-content
         .modal-body
           .formWrapper
-            form(method='Post' action='mailer')
+            form(method='Post' action='contacts')
               button(type="button", class="close", data-dismiss="modal") x
               h3 Add Contact
               h4 Name:
@@ -78,7 +95,7 @@ block content
               .contactMethod
                 br
                 h4 Contact Method: 
-                input(id='chk1' name='ContactMail' type='checkbox' value='Mail')
+                input(id='chk1' name='ContactMail' type='checkbox' value='true')
                 h5 Mail
                 input(id='chk2' name='ContactPhone' type='checkbox' value='Phone')
                 h5 Phone
