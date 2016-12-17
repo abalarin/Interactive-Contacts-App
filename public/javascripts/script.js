@@ -1,6 +1,3 @@
-//$(function (){
-//});
-
 function isChecked(){
   if(!document.getElementById('chk1').checked) {
     $("#ContactMethod").append('<input name="ContactMail" value="false" hidden/>');

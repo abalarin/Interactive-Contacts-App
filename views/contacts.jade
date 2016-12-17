@@ -8,10 +8,13 @@ block content
   
   div(class='content' id='list')
     ul(class='ContactsList')
+    
       button.btn.btn-primary.btn-lg(id='modalBttn', type='button', data-toggle='modal', data-target='#myModal') Add Contact
+      
       div.searchButtons
         button.btn.btn-info#name Search Name
         button.btn.btn-info#address Search Address
+        
       div.searchInputs
         input#searchName(placeholder='Name' hidden) 
         select#radius(hidden)
@@ -23,12 +26,11 @@ block content
         
         a#search(hidden)
           span.glyphicon.glyphicon-ok
-          
         a.back(hidden)
           span.glyphicon.glyphicon-remove
+      
+      //-  -------------Contact Bubble----------------
       -for item in data
-        -if(item.First != '' && item.Last != '' && item.Coordinates != undefined)
-          
           div(class='contactBubble' id='#{item._id}' onclick='centerMap(' + item.Coordinates[0].lat + ',' + item.Coordinates[1].lon +')')
             li
               a.edit
@@ -54,17 +56,18 @@ block content
               p #{item.Phone}
               span , 
               p #{item.Email}
+        //- ----------------End Bubble---------------------
 
+  //- ----      form modal      -------
   div(class='modal fade', id="myModal", tabindex="-1", role="dialog")
     .modal-dialog(role="document")
       .modal-content
         .modal-body
           .formWrapper
             form(method='Post' action='contacts')
-              button(type="button", class="close", data-dismiss="modal") x
               h3 Add Contact
               h4 Name:
-              div(class='radiobuttons') 
+              div.radiobuttons 
                 input(type='radio' name='Preferance' value='Mr.' required)
                 label Mr.
                 input(type='radio' name='Preferance' value='Mrs.' required)
@@ -95,17 +98,18 @@ block content
               .contactMethod
                 br
                 h4 Contact Method: 
-                input(id='chk1' name='ContactMail' type='checkbox' value='true')
+                input#chk1(name='ContactMail' type='checkbox' value='true')
                 h5 Mail
-                input(id='chk2' name='ContactPhone' type='checkbox' value='Phone')
+                input#chk2(name='ContactPhone' type='checkbox' value='Phone')
                 h5 Phone
-                input(id='chk3' name='ContactEmai' type='checkbox' value='Email')
+                input#chk3(name='ContactEmai' type='checkbox' value='Email')
                 h5 Email
                 
               input(name='modalForm' value='true' hidden)
               button(type="button" class="modalBttn btn btn-default" data-dismiss="modal") Close
               input(type='submit' class='btn btn-primary')
-  
-  div(class='content' id='map')  
+        //- ---------- End Modal ------------
+
+  div.content#map
     script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFJTfyGLWIUm3gZOGBc_j7kZf6FncAAYY&callback=initMap").
     
