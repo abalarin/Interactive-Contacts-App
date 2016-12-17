@@ -23,7 +23,8 @@ bcrypt.genSalt(10, function(err, salt) {
 // Connecting to mongoDB
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('localhost:27017/finalproject');
+var db = monk('mongodb://admin:pass@ds133378.mlab.com:33378/heroku_9vz0p4kh');
+//var db = monk('localhost:27017/finalproject');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
