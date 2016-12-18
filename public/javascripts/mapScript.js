@@ -173,15 +173,39 @@ function initMap(location) {
   $.post('/contacts', function(results){
     size= results.data.length;
     for (var i = 0; i < size; i++){
-      lat = results.data[i].Coordinates[0].lat;
-      lng = results.data[i].Coordinates[1].lon;
+      data = results.data[i];
+      lat = data.Coordinates[0].lat;
+      lng = data.Coordinates[1].lon;
+
+      var contentString = '<div><h2 style="font-size:15px;">'+ data.First +' '+ data.Last +'</h2></div>'+
+      '<div><p>'+data.Phone+'</br>'+data.Email+'</p></div>';
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+
       var latLng = new google.maps.LatLng(lat, lng);
       var marker = new google.maps.Marker({
         position: latLng,
         zoom: 10,
         animation: google.maps.Animation.DROP,
-        map: map
+        map: map,
+        infowindow: infowindow
       });
+
+      google.maps.event.addListener(marker, 'click', function() {
+        console.log(this);
+        console.log(google.maps);
+
+        this.infowindow.open(map, this);
+        google.maps.event.removeListener(listener);
+      });
+      google.maps.event.addListener(marker, 'mouseover', function() {
+        this.infowindow.open(map, this);
+      });
+      var listener = google.maps.event.addListener(marker, 'mouseout', function() {
+        this.infowindow.close(map, this);
+      });
+
     }
   });
 }

@@ -3,6 +3,9 @@
   width: 95%;
   margin-bottom: 10px;
 }
+.content {
+  min-width: 300px;
+}
 
 /*----Start of Search options--------*/
 .searchButtons {

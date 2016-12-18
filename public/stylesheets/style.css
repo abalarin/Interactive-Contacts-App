@@ -1,8 +1,10 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  min-width: 300px;
 }
 .navbar {
   box-shadow: 0px 2px 2px #999;
+  min-width: 300px;
 }
 a {
   color: #00B7FF;
