@@ -11,23 +11,23 @@ var options = {
 var geocoder = NodeGeocoder(options);
 
 //Ensure loggedin
-var ensureLoggedIn = function(req, res, next) {
-	if ( req.user ) {
-		next();
-	}
-	else {
-		res.redirect("/login");
-	}
-}
+// var ensureLoggedIn = function(req, res, next) {
+// 	if ( req.user ) {
+// 		next();
+// 	}
+// 	else {
+// 		res.redirect("/login");
+// 	}
+// }
 
 /* GET home page. */
-router.get('/', ensureLoggedIn, function(req, res, next) {
+router.get('/', /*ensureLoggedIn*/ function(req, res, next) {
   var db = req.db;
   var collection = db.get('newCollection');
 
   console.log('user: ', req.user);
   collection.find({},{},function(e,docs){
-        res.render('contacts', {data: docs, user: req.user});
+        res.render('contacts', {data: docs});
     });
 });
 
