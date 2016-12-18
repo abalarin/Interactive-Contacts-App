@@ -85,25 +85,25 @@ app.use(function(req,res,next){
     next();
 });
 
-index.post('/login',
-    passport.authenticate('local', {
-      successRedirect: '/contacts',
-      failureRedirect: '/login_fail',
-    })
-);
-
-index.get('/login', function (req, res) {
-  res.render('login', {title: 'Please Login'});
-});
-
-index.get('/login_fail', function (req, res) {
-  res.render('login', {title: 'Login Failed'});
-});
-
-index.get('/logout', function (req, res) {
-  req.logout();
-  res.redirect('/login');
-});
+// index.post('/login',
+//     passport.authenticate('local', {
+//       successRedirect: '/contacts',
+//       failureRedirect: '/login_fail',
+//     })
+// );
+//
+// index.get('/login', function (req, res) {
+//   res.render('login', {title: 'Please Login'});
+// });
+//
+// index.get('/login_fail', function (req, res) {
+//   res.render('login', {title: 'Login Failed'});
+// });
+//
+// index.get('/logout', function (req, res) {
+//   req.logout();
+//   res.redirect('/login');
+// });
 
 
 app.use('/', index);
